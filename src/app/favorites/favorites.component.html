@@ -1,1 +1,11 @@
 <p>favorites works!</p>
+
+<div class="card" *ngFor="let forecasts of favorites" style="width: 18rem;" align="center">
+        <div class="card-body">
+          <h5 class="card-title">{{forecasts.cityName}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{forecasts.date}}</h6>
+          <p class="card-text"><b>Day:</b> {{forecasts.currentDayForecasts}}</p>
+          <p class="card-text"><b>Night:</b> {{forecasts.currentNightForecasts}}</p>
+          <button  type="button" class="btn btn-danger"(click)="removeFromFavorites(forecasts)">Remove</button>
+        </div>
+      </div>

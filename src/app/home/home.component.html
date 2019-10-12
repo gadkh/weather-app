@@ -17,8 +17,8 @@
               <h6 class="card-subtitle mb-2 text-muted">{{forecasts.date | slice:0:10}}</h6>
               <p class="card-text"><b>Day:</b> {{forecasts.currentDayForecasts}}</p>
               <p class="card-text"><b>Night:</b> {{forecasts.currentNightForecasts}}</p>
-             <i class="fas fa-band-aid"></i>
-              <i class="glyphicon glyphicon-minus"></i>
+              <button *ngIf="this.request.checkIfCityExist(forecasts)==-1" type="button" class="btn btn-success" (click)="AddToFavorites()">Add</button>
+              <button *ngIf="this.request.checkIfCityExist(forecasts)!=-1" type="button" class="btn btn-danger"(click)="removeFromFavorites()">Remove</button>
             </div>
           </div>
 

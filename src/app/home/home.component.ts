@@ -62,4 +62,13 @@ export class HomeComponent implements OnInit {
   else{
     }
   }
+
+  AddToFavorites(){
+    this.request.addToFavorites(this.forecasts);
+    console.log(this.request.favorites);
+  }
+  removeFromFavorites(){
+    this.request.removeFromFavorites(this.forecasts);
+    console.log(this.request.favorites);
+  }
 }
