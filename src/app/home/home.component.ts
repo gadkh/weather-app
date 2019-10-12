@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RequestService } from '../request.service';
+import { Forecasts } from '../forecasts';
 
 @Component({
   selector: 'app-home',
@@ -7,8 +8,26 @@ import { RequestService } from '../request.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  temp:any="";
-  constructor(private request:RequestService) { }
+  //temp:any="";
+  forecasts:Forecasts;
+  values;
+  valu:any;
+  constructor(private request:RequestService) {
+    this.forecasts=new Forecasts();
+    this.forecasts.cityName="Tel Aviv";
+    this.forecasts.cityKey="215854";
+    // this.request.getForecastsForOneDay(this.forecasts.cityKey).subscribe(returnValue=>{
+    //    this.forecasts.currentDayForecasts=returnValue["DailyForecasts"][0]["Day"]["IconPhrase"];
+    //    this.forecasts.currentNightForecasts=returnValue["DailyForecasts"][[0]]["Night"]["IconPhrase"];
+    //    this.forecasts.date=returnValue["DailyForecasts"][0]["Date"];
+    //   //console.log(returnValue["DailyForecasts"][0]["Date"]);
+      
+    //   // DailyForecasts.Day.IconPhrase	
+    // })
+    // console.log(this.request.getAutocompleteSearch("Tel Aviv").subscribe(x=>{
+    //   console.log(x);
+    // }));
+   }
 
   ngOnInit() {
   }
@@ -28,5 +47,19 @@ export class HomeComponent implements OnInit {
   clickMe(search){
     console.log(search);
     
+  }
+  onKey(event: KeyboardEvent) { // with type info
+    var valClick=(event.target as HTMLInputElement).value;
+    if(valClick!=""){
+
+    this.request.getAutocompleteSearch(valClick).subscribe(x=>{
+      this.values=x;
+      console.log(x[0].LocalizedName);
+      
+    });
+    this.values = (event.target as HTMLInputElement).value;
+  }
+  else{
+    }
   }
 }

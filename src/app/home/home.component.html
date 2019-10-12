@@ -1,6 +1,29 @@
-<p>home works!</p>
+<!-- <p>home works!</p>
+<input (keyup)="onKey($event)">
+<p>{{values}}</p> -->
+
+
+    <div class="autocomplete" style="width:300px;">
+      <input id="myInput" type="text" name="myCountry" placeholder="Country">
+    </div>
+    <input type="submit" value="Submit">
+    <div id="autoComplete">
+        
+    </div>
+    
+    <div class="card" style="width: 18rem;" align="center">
+            <div class="card-body">
+              <h5 class="card-title">{{forecasts.cityName}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{forecasts.date | slice:0:10}}</h6>
+              <p class="card-text"><b>Day:</b> {{forecasts.currentDayForecasts}}</p>
+              <p class="card-text"><b>Night:</b> {{forecasts.currentNightForecasts}}</p>
+             <i class="fas fa-band-aid"></i>
+              <i class="glyphicon glyphicon-minus"></i>
+            </div>
+          </div>
+
 <!-- <form action=""> -->
-        <input type="text" placeholder="search for place..." #search>
-        <button (click)="clickMe(search.value)"></button>
+        <!-- <input type="text" placeholder="search for place..." #search> -->
+        <!-- <button (click)="clickMe(search.value)"></button> -->
 <!-- </form> -->
 <!-- <button (click)="click()">click me</button> -->
