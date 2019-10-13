@@ -1,6 +1,6 @@
-<p>favorites works!</p>
+<!-- <p>favorites works!</p> -->
 
-<div class="card" *ngFor="let forecasts of favorites" style="width: 18rem;" align="center">
+<!-- <div class="card" *ngFor="let forecasts of favorites" style="width: 18rem;" align="center">
         <div class="card-body">
           <h5 class="card-title">{{forecasts.cityName}}</h5>
           <h6 class="card-subtitle mb-2 text-muted">{{forecasts.date}}</h6>
@@ -8,4 +8,27 @@
           <p class="card-text"><b>Night:</b> {{forecasts.currentNightForecasts}}</p>
           <button  type="button" class="btn btn-danger"(click)="removeFromFavorites(forecasts)">Remove</button>
         </div>
-      </div>
+      </div> -->
+<div class="container">
+      <table class="table">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">ID</th>
+                <th scope="col">City</th>
+                <th scope="col">Day</th>
+                <th scope="col">Night</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let fav of favorites" (click)="getDetailes(fav)">
+                <td><button class="btn btn-danger" title="delete trainer" (click)="removeFromFavorites(fav)">-</button></td>
+                <td>{{fav.cityKey}}</td>
+                <td>{{fav.cityName}}</td>
+                <td>{{fav.fiveDaysForecasts[0]}}</td>
+                <td>{{fav.fiveNightForecasts[0]}}</td>
+                
+              </tr>
+            </tbody>
+          </table>
+        </div>

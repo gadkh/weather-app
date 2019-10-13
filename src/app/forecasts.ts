@@ -5,6 +5,7 @@ export class Forecasts {
     currentNightForecasts:string;
     fiveDaysForecasts:string[]=[];
     fiveNightForecasts:string[]=[];
+    dates:string[]=[];
     date:string;
     constructor(){
     }
