@@ -1,95 +1,36 @@
-<!-- <p>home works!</p>
-<input (keyup)="onKey($event)">
-<p>{{values}}</p> -->
 
-<!-- 
-    <div class="autocomplete" style="width:300px;">
-      <input id="myInput" type="text" name="myCountry" [(ngModel)]="forecasts.cityName" placeholder="Country">
-    </div>
-    <input type="submit" value="Submit">
-    <div id="autoComplete">
-        
-    </div> -->
-    
 
-    <div class="autocomplete" style="width:300px;">
-      <input id="myInput" type="text" name="myCountry"  placeholder="Country">
+    <div class="autocomplete"  style="width:300px;">
+      <input id="myInput" [(ngModel)]="city.cityName" (keyup)="onKey($event)" type="text" name="myCountry"  placeholder="Country">
     </div>
-    <input type="submit" value="Submit">
-    <div id="autoComplete">
-        
+    <input type="submit" (click)="sendData()" value="Submit">
+    <div  class="scrolling" *ngIf="city.cityName != '' && city.cityName != null">
+        <div (click)="setValue(city)" *ngFor="let city of cities">{{city.LocalizedName}}</div>
     </div>
 
-    <!-- <div class="card" style="width: 18rem;" align="center" >
-            <div class="card-body">
-              <h5 class="card-title">{{forecasts.cityName}}</h5>
-              <h6 class="card-subtitle mb-2 text-muted" *ngFor="let currentDate of forecasts.dates">{{currentDate}}</h6>
-              <p class="card-text" *ngFor="let day of forecasts.fiveDaysForecasts"><b>Day:</b> {{day}}</p>
-              <p class="card-text"><b>Night:</b> {{forecasts.currentNightForecasts}}</p>
-              <button *ngIf="this.request.checkIfCityExist(forecasts)==-1" type="button" class="btn btn-success" (click)="AddToFavorites()">Add</button>
-              <button *ngIf="this.request.checkIfCityExist(forecasts)!=-1" type="button" class="btn btn-danger"(click)="removeFromFavorites()">Remove</button>
-            </div>
-          </div> -->
-
-
-          <!-- <div class="card" style="width: 60rem;"  >
-                <div class="card-body">
-                  <h5 class="card-title">{{forecasts.cityName}}</h5>
-                  <table class="table">
-                        <thead>
-                          <tr>
-                            <th *ngFor="let date of forecasts.dates" scope="col">{{date}}</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td *ngFor="let day of forecasts.fiveDaysForecasts">
-                                <b>Day: </b> {{day}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td *ngFor="let night of forecasts.fiveNightForecasts">
-                                    <b>Night: </b> {{night}}
-                                </td>
-                            </tr>
-                        </tbody>
-                      </table>
-                  <button *ngIf="this.request.checkIfCityExist(forecasts)==-1" type="button" class="btn btn-success" (click)="AddToFavorites()">Add</button>
-                  <button *ngIf="this.request.checkIfCityExist(forecasts)!=-1" type="button" class="btn btn-danger"(click)="removeFromFavorites()">Remove</button>
-                </div>
-              </div> -->
-
-
-              <div class="card" style="width: 60rem;"  >
-                    <div class="card-body">
-                      <h5 class="card-title">{{request.currentForecats.cityName}}</h5>
-                      <table class="table">
-                            <thead>
-                              <tr>
-                                <th *ngFor="let date of request.currentForecats.dates" scope="col">{{date}}</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td *ngFor="let day of request.currentForecats.fiveDaysForecasts">
-                                    <b>Day: </b> {{day}}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td *ngFor="let night of request.currentForecats.fiveNightForecasts">
-                                        <b>Night: </b> {{night}}
+                  <div class="card" style="width: 60rem;"  >
+                        <div class="card-body">
+                          <h5 class="card-title">{{forecasts.cityName}}</h5>
+                          <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th *ngFor="let date of forecasts.dates" scope="col">{{date}}</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td *ngFor="let day of forecasts.fiveDaysForecasts">
+                                        <b>Day: </b> {{day}}
                                     </td>
                                 </tr>
-                            </tbody>
-                          </table>
-                          <button *ngIf="this.request.checkIfCityExist(request.currentForecats)==-1" type="button" class="btn btn-success" (click)="AddToFavorites()">Add</button>
-                          <button *ngIf="this.request.checkIfCityExist(request.currentForecats)!=-1" type="button" class="btn btn-danger"(click)="removeFromFavorites()">Remove</button>
-                    </div>
-                  </div>
-
- <!-- <input type="text" [(ngModel)]="forecasts.cityName" placeholder="search for place..." #search> -->
-<!-- <form action=""> -->
-        <!-- <input type="text" placeholder="search for place..." #search> -->
-        <!-- <button (click)="clickMe(search.value)"></button> -->
-<!-- </form> -->
-<!-- <button (click)="click()">click me</button> -->
+                                <tr>
+                                    <td *ngFor="let night of forecasts.fiveNightForecasts">
+                                            <b>Night: </b> {{night}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                              </table>
+                              <button *ngIf="checkIfCityExist()==-1" type="button" class="btn btn-success" (click)="AddToFavorites()">Add</button>
+                              <button *ngIf="checkIfCityExist()!=-1" type="button" class="btn btn-danger"(click)="removeFromFavorites()">Remove</button>
+                        </div>
+                      </div>

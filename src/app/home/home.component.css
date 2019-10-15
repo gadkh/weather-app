@@ -21,6 +21,10 @@ input[type=submit] {
   background-color: black;
   color: #fff;
 }
+button.myButton{
+  background-color: black;
+  color: #fff;
+}
 .autocomplete-items {
   position: absolute;
   border: 1px solid #d4d4d4;
@@ -53,4 +57,10 @@ input[type=submit] {
     float: none; /* Added */
     margin-bottom: 10px; /* Added */
     margin-top: 10px;
+}
+
+div.scrolling {
+  width: 300px;
+  height: 50px;
+  overflow: auto;
 }

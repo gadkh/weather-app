@@ -10,9 +10,12 @@ import { Router } from '@angular/router';
 })
 export class FavoritesComponent implements OnInit {
   favorites:Forecasts[]=[];
+  forecasts:Forecasts;
   constructor(private request:RequestService, private router:Router) { 
+    this.forecasts=new Forecasts();
     this.favorites=this.request.getAllFavorites();
     this.request.currentForecats=this.request.defaultForects;
+    this.forecasts=this.request.defaultForects;
   }
   ngOnInit() {
   }
