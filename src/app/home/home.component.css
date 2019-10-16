@@ -35,7 +35,7 @@ div.scrolling {
 
 div.table{
   margin-top: 80px;
-  position: fixed;
+  position: absolute;
 }
 
 body,
