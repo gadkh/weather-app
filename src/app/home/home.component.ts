@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RequestService } from '../request.service';
 import { Forecasts } from '../forecasts';
-import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
+import { FormsModule } from '@angular/forms'; 
 import { City } from '../city';
 
 @Component({
@@ -11,37 +11,34 @@ import { City } from '../city';
 })
 export class HomeComponent implements OnInit {
   city:City;
-  tempForcast:Forecasts[]=[];
   forecasts:Forecasts;
-  values;
   cities;
-  valu:any;
-  datesTemp:string[]=["2019-10-12","2019-10-131","2019-10-141","2019-10-151","2019-10-161"];
-  days:string[]=["Sunny","Sunny","Partly sunny","Partly sunny","Partly sunny"];
-  night:string[]=["Partly sunny","Partly sunny","Partly sunny","Sunny","Sunny"]
+  currectCity:boolean;
+  backgroundImge:string;
   constructor(private request:RequestService) {
     this.forecasts=new Forecasts();
     this.city=new City();
-    this.getWeather(this.request.defaultForects.cityKey,this.request.defaultForects.cityName);
+    this.currectCity=true;
+    this.backgroundImge="../../assets/img/background.jpg";
    }
 
   ngOnInit() {
+   this.getWeather(this.request.currentForecats.city.cityKey,this.request.currentForecats.city.cityName);
+   
   }
-
-
   AddToFavorites(){
-    this.request.addToFavorites(this.forecasts);    
+    
+    this.request.addToFavorites(this.forecasts); 
+    
   }
   removeFromFavorites(){
-    this.request.removeFromFavorites(this.forecasts);
+   this.request.removeFromFavorites(this.forecasts);
   }
 
   checkIfCityExist(){
-    return this.request.checkIfCityExist(this.forecasts);
+    let check=this.request.checkIfCityExist(this.forecasts.city);
+    return check;
   }
-
-
-
   onKey(event: KeyboardEvent) { // with type info
     var valClick=(event.target as HTMLInputElement).value;
     if(valClick!=""){
@@ -53,42 +50,44 @@ export class HomeComponent implements OnInit {
     else{
       this.cities=null;
     }
-    });
-  }
+  });
 }
-  setValue(city){
+}
+  setValue(city){    
     if(city.LocalizedName!=null){
       this.city.cityName=city.LocalizedName;
       this.city.cityKey=city.Key;
     }
-    
   }
-
   sendData(){
-    this.getWeather(this.city.cityKey,this.city.cityName);
-    
+    this.getWeather( this.city.cityKey, this.city.cityName);
   }
-
   getWeather(cityKey,cityName){
     this.request.getForecastsForFiveDay(cityKey).subscribe(returnValue=>{
-      console.log(returnValue);
-      this.forecasts.cityName=cityName;
-      this.forecasts.cityKey=cityKey;
+      this.currectCity=true;
+      this.forecasts.city.cityName=cityName;
+      this.forecasts.city.cityKey=cityKey;
       for(let i=0;i<returnValue["DailyForecasts"].length;i++)
       {
         this.forecasts.fiveDaysForecasts.pop()
         this.forecasts.fiveNightForecasts.pop()
         this.forecasts.dates.pop();
+        this.forecasts.minTemperature.pop();
+        this.forecasts.maxTemperature.pop()
       }
       for(let i=0;i<returnValue["DailyForecasts"].length;i++)
       {
-        this.forecasts.fiveDaysForecasts.push(returnValue["DailyForecasts"][i]["Day"]["IconPhrase"])
-        this.forecasts.fiveNightForecasts.push(returnValue["DailyForecasts"][i]["Night"]["IconPhrase"])
+        this.forecasts.fiveDaysForecasts.push(returnValue["DailyForecasts"][i]["Day"]["IconPhrase"]);
+        this.forecasts.fiveNightForecasts.push(returnValue["DailyForecasts"][i]["Night"]["IconPhrase"]);
         let date=returnValue["DailyForecasts"][i]["Date"].substring(0,10);
         this.forecasts.dates.push(date);
+        this.forecasts.minTemperature.push(returnValue["DailyForecasts"][i]["Temperature"]["Minimum"]["Value"]);
+        this.forecasts.maxTemperature.push(returnValue["DailyForecasts"][i]["Temperature"]["Maximum"]["Value"]);
+
       }
-    
-    
+    },
+    (err)=>{ 
+      this.currectCity=false;
     });
   }
  }

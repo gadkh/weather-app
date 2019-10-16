@@ -14,19 +14,18 @@ export class FavoritesComponent implements OnInit {
   constructor(private request:RequestService, private router:Router) { 
     this.forecasts=new Forecasts();
     this.favorites=this.request.getAllFavorites();
-    this.request.currentForecats=this.request.defaultForects;
     this.forecasts=this.request.defaultForects;
   }
   ngOnInit() {
+    this.request.currentForecats=this.request.defaultForects;
   }
   removeFromFavorites(forecasts:Forecasts){
      this.request.removeFromFavorites(forecasts);
      this.favorites=this.request.getAllFavorites();
   }
   getDetailes(fav:Forecasts){
-    this.request.currentForecats.cityKey=fav.cityKey;
-    this.request.currentForecats.cityName=fav.cityName;
-    console.log(this.request.favorites[0]);
+    this.request.currentForecats.city.cityKey=fav.city.cityKey;
+    this.request.currentForecats.city.cityName=fav.city.cityName;
     this.router.navigate([""]);
   }
 }
