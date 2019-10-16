@@ -1,8 +1,6 @@
 import { City } from './city';
 
 export class Forecasts {
-    // cityName:string;
-    // cityKey:string;
     city:City;
     currentDayForecasts:string;
     currentNightForecasts:string;

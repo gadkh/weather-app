@@ -1,39 +1,36 @@
-
-<!-- <div [ngStyle]="{'background-image': 'url('+backgroundImge+)'}''">
-    style using ngStyle
-  </div> -->
 <div class="bg" >
 <div class="autocomplete"  style="width:300px;">
       <input id="myInput" [(ngModel)]="city.cityName" (keyup)="onKey($event)" type="text" name="myCountry"  placeholder="Country">
     </div>
     <input type="submit" (click)="sendData()" value="Submit">
     <div  class="scrolling" *ngIf="city.cityName != '' && city.cityName != null">
-        <div (click)="setValue(city)" *ngFor="let city of cities">{{city.LocalizedName}}</div>
+        <div (click)="setValue(city)"  *ngFor="let city of cities">{{city.LocalizedName}}</div>
     </div>
+    
     <div class="row table" *ngIf="currectCity==true">
       <div class="col-sm-1 col-md-1 col-lg-1" ></div>
       <div class="col-sm-10 col-md-10 col-lg-10">
-        <h5 align="center">{{forecasts.city.cityName}}</h5>
+        <h5 align="center" class="fonts">{{forecasts.city.cityName}}</h5>
         <hr>
         <div class="row">
           <div class="col-sm-2 col-md-2 col-lg-2"></div>
-          <div class="col-sm-2 col-md-2 col-lg-2"  *ngFor="let date of forecasts.dates" scope="col"><b>{{date}}</b></div>
+          <div class="col-sm-2 col-md-2 col-lg-2 fonts"  *ngFor="let date of forecasts.dates" scope="col"><b>{{date}}</b></div>
         </div>
         
         <hr>
         <div class="row">
-            <div class="col-sm-2"><b>Temperature:</b></div>
-            <div class="col-sm-2" *ngFor="let temperature of forecasts.maxTemperature">{{temperature}}</div>
+            <div class="col-sm-2 fonts"><b>Temperature:</b></div>
+            <div class="col-sm-2 fonts" *ngFor="let temperature of forecasts.maxTemperature">{{temperature}}</div>
           </div>
         <hr>
         <div class="row">
-          <div class="col-sm-2"><b>Day:</b></div>
-          <div class="col-sm-2" *ngFor="let day of forecasts.fiveDaysForecasts">{{day}}</div>
+          <div class="col-sm-2 fonts"><b>Day:</b></div>
+          <div class="col-sm-2 fonts" *ngFor="let day of forecasts.fiveDaysForecasts">{{day}}</div>
         </div>
         <hr>
         <div class="row">
-          <div class="col-sm-2"><b>Night:</b></div>
-          <div class="col-sm-2" *ngFor="let night of forecasts.fiveNightForecasts">{{night}}</div>
+          <div class="col-sm-2 fonts"><b>Night:</b></div>
+          <div class="col-sm-2 fonts" *ngFor="let night of forecasts.fiveNightForecasts">{{night}}</div>
         </div>
         <hr>
         <div class="row">
@@ -48,7 +45,7 @@
 <div class="row" *ngIf="currectCity==false">
   <div class="col-sm-1 col-md-1 col-lg-1" ></div>
   <div class="col-sm-10 col-md-10 col-lg-10" align="center">
-    <p>No Avilable City</p>
+    <p class="fonts">No Avilable City</p>
   </div>
   <div class="col-sm-1 col-md-1 col-lg-1"></div>
 </div>

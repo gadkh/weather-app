@@ -28,4 +28,13 @@ export class FavoritesComponent implements OnInit {
     this.request.currentForecats.city.cityName=fav.city.cityName;
     this.router.navigate([""]);
   }
+  checkIsFavoriteEmpty(){
+    if(this.request.getAllFavorites().length>0)
+    {
+      return false;
+    }
+    else{
+      return true;
+    }
+  }
 }

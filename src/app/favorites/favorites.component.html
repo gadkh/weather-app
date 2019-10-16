@@ -1,25 +1,26 @@
-<div class="bg">
-<div class="container">
-      <table class="table">
-            <thead>
-              <tr>
-                <th scope="col"></th>
-                <th scope="col">ID</th>
-                <th scope="col">City</th>
-                <th scope="col">Day</th>
-                <th scope="col">Night</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let fav of favorites" (click)="getDetailes(fav)">
-                <td><button class="btn btn-danger"  (click)="removeFromFavorites(fav)">-</button></td>
-                <td>{{fav.city.cityKey}}</td>
-                <td>{{fav.city.cityName}}</td>
-                <td>{{fav.fiveDaysForecasts[0]}}</td>
-                <td>{{fav.fiveNightForecasts[0]}}</td>
-                
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        </div>
+  <div class="bg">
+        <div class="flex-container" *ngIf="checkIsFavoriteEmpty()==false">
+          <div *ngFor="let fav of favorites index as i" (click)="getDetailes(fav)">
+              <div>
+                <div class="row">
+                  <div class="col"><b>{{fav.city.cityName}} - {{fav.city.cityKey}}</b></div>               
+                </div>
+                <div class="row">
+                    <div class="col"><b>Temperature:</b> {{fav.maxTemperature[0]}}</div>
+                </div>
+                <div class="row">
+                    <div class="col"><b>Day:</b> {{fav.fiveDaysForecasts[0]}}</div>
+                </div>
+                <div class="row">
+                    <div class="col"><b>Night: </b>{{fav.fiveNightForecasts[0]}}</div>
+                </div>
+                <div class="row">
+                    <div class="col"><button class="btn btn-danger"  (click)="removeFromFavorites(fav)">Delete</button></div>
+                </div>
+              </div>
+            </div>  
+          </div>
+          <div class="center" *ngIf="checkIsFavoriteEmpty()==true">
+            <h1>Not Favorites Yet</h1>
+          </div>
+          </div>

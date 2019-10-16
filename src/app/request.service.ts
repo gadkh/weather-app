@@ -2,17 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Forecasts } from './forecasts';
 import { City } from './city';
-import { throwError, Observable } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class RequestService {
-  // key="qREWg9ZTL3GqcAywv8GE7QR8dhETAQ57";
-  // key="p8bw0H51f34qpz0A3csdVhjhTowWojvA";
-  //key="ffA32sKUhlcWEgZKpT2sWD9eYutJgfeE";
-  key="sTPje46idRkkhQvkEa4uUrB6hYS5THSO";
+  key="qREWg9ZTL3GqcAywv8GE7QR8dhETAQ57";
+
   basicUrl="http://dataservice.accuweather.com/";
   language="en";
   favorites:Forecasts[]=[];
@@ -47,7 +44,6 @@ export class RequestService {
     return this.http.get(url);
   }
   addToFavorites(forecasts:Forecasts){
-    // let index=this.checkIfCityExist(forecasts.city);
     var forecastsNew:Forecasts=new Forecasts();
     forecastsNew.city.cityKey=forecasts.city.cityKey;
     forecastsNew.city.cityName=forecasts.city.cityName;
@@ -60,6 +56,12 @@ export class RequestService {
     forecasts.fiveNightForecasts.forEach(night => {
       forecastsNew.fiveNightForecasts.push(night);
     });
+    forecasts.maxTemperature.forEach(maxTemp => {
+      forecastsNew.maxTemperature.push(maxTemp);
+    });
+    forecasts.minTemperature.forEach(minTemp => {
+      forecastsNew.minTemperature.push(minTemp);
+    });
      let index=this.checkIfCityExist(forecastsNew.city);
     if(index==-1){
       this.favorites.push(forecastsNew);  
@@ -70,8 +72,7 @@ export class RequestService {
     this.favorites.splice(index,1);
   }
   getAllFavorites() {
-    //return [...this.favorites]; 
-    return this.favorites;
+    return [...this.favorites]; 
 }
  
 
