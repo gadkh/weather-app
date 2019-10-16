@@ -10,7 +10,7 @@ import { City } from './city';
 export class RequestService {
   key="qREWg9ZTL3GqcAywv8GE7QR8dhETAQ57";
 
-  basicUrl="//dataservice.accuweather.com/";
+  basicUrl="https://dataservice.accuweather.com/";
   language="en";
   favorites:Forecasts[]=[];
 
